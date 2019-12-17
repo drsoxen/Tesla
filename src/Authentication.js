@@ -3,9 +3,9 @@ var fs = require('fs');
 
 let Endpoints;
 
-var env = JSON.parse(fs.readFileSync('env.json', 'utf8'));
+var env = JSON.parse(fs.readFileSync('../env.json', 'utf8'));
 
-let checkingStateInterval;
+let checkingStateInterval = null;
 
 const axios = axioslib.create({
     baseURL: env.baseURL,
@@ -38,8 +38,7 @@ let login = (callback) => {
             grant_type: 'password',
         })
         .then((response) => {
-            module.exports.access_token = response.data.access_token;
-            axios.defaults.headers.Authorization = 'bearer ' + module.exports.access_token
+            axios.defaults.headers.Authorization = 'bearer ' + response.data.access_token
 
             callback();
         })
@@ -51,7 +50,7 @@ let login = (callback) => {
 let getVehicles = (callback) => {
     axios.get('/api/1/vehicles/')
         .then((response) => {
-            fs.readFile("endpoints.json", "utf8", (err, data) => {
+            fs.readFile("../public/endpoints.json", "utf8", (err, data) => {
                 Endpoints = JSON.parse(data.replace(/{vehicle_id}/g, response.data.response[0].id_s))
                 module.exports.Endpoints = Endpoints;
                 callback();
@@ -73,17 +72,18 @@ let wake = (callback) => {
 }
 
 let checkOnline = (callback) => {
-    axios.get(Endpoints.VEHICLE_DATA.URI)
+    axios.get(Endpoints.VEHICLE_SUMMARY.URI)
         .then((response) => {
             if (response.data.response.state == 'online') {
-                //console.log('Tesla online');
                 clearInterval(checkingStateInterval);
+                checkingStateInterval = null;
                 callback();
             } else {
-                //console.log('Tesla asleep, trying again in 2 seconds');
-                checkingStateInterval = setInterval(() => {
-                    checkOnline(callback)
-                }, 2000);
+                if(!checkingStateInterval){
+                    checkingStateInterval = setInterval(() => {
+                        checkOnline(callback)
+                    }, 2000);
+                }
             }
         })
         .catch((error) => {

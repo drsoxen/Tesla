@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template app</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
+
+  <style>
+    .section-with-bg {
+      border-radius: 6px;
+      background: #eee;
+      padding: 1em;
+      margin: 1em;
+    }
+  </style>
+  </head>
+  <body>
+  	<div class="container">
+
+      <div class="header clearfix">
+        <img class="center" width="20%" height="20%" src="https://i.pinimg.com/originals/cc/0a/a7/cc0aa78a8a528b1a6b273910bca91269.png">
+      </div>
+      {+body /}
+    </div>
+  </body>
+</html>

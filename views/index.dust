@@ -1,0 +1,13 @@
+{>"layout" /}
+
+{<body}
+<div>
+  <h1>Status</h1>
+  <p><a href="/battery">Battery</a></p>
+  <p><a href="/climate">Climate</a></p>
+</div>
+<div>
+  <h1>Commands</h1>
+  <p><a href="/defrost">Max Defrost</a></p>
+</div>
+{/body}

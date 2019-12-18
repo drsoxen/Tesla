@@ -80,7 +80,12 @@ app.get('/battery', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('index');
+    if(Auth.loggedIn == true){
+        res.render('index');
+    }
+    else{
+        res.render('login');
+    }
 });
 
 app.listen(3000, () => {

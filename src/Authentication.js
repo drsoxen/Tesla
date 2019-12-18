@@ -5,6 +5,8 @@ let Endpoints;
 
 var env = JSON.parse(fs.readFileSync('../env.json', 'utf8'));
 
+let loggedIn = false;
+
 let checkingStateInterval = null;
 
 const axios = axioslib.create({
@@ -59,6 +61,9 @@ let login = (callback) => {
         })
         .then((response) => {
             axios.defaults.headers.Authorization = 'bearer ' + response.data.access_token
+
+            loggedIn = true;
+            module.exports.loggedIn = loggedIn;
 
             callback();
         })

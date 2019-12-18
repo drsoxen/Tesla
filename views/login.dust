@@ -1,0 +1,8 @@
+{>"layout" /} 
+{<body}
+    <div>
+
+        <button type="button" id="LoginBtn" class="btn btn-success">Login</button>
+
+    </div>
+{/body}

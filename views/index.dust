@@ -1,14 +1,42 @@
-{>"layout" /}
-
+{>"layout" /} 
 {<body}
-<div>
-  <h1>Status</h1>
-  <button type="button" href="/battery" class="btn btn-outline-primary">Battery Status</button> </br> </br>
-  <button type="button" href="/climate" class="btn btn-outline-primary">Climate Status</button> </br> </br>
-</div>
-<div>
-  <h1>Commands</h1>
-  <button type="button" href="/honk" class="btn btn-outline-success">Honk Horn</button> </br> </br>
-  <button type="button" href="/defrost" class="btn btn-outline-danger">Max Defrost</button> </br> </br>
-</div>
+	<div>
+	    <h1>Status</h1>
+	    <button type="button" id="BatteryStatusBtn" class="btn btn-primary">Battery Status</button>
+	    </br>
+	    </br>
+	    <button type="button" id="ClimateStatusBtn" href="/climate" class="btn btn-primary">Climate Status</button>
+	    </br>
+	    </br>
+	    </div>
+    <div>
+        <h1>Commands</h1>
+        <button type="button" id="HonkHornBtn" class="btn btn-success">Honk Horn</button>
+        </br>
+        </br>
+        <h1>HVAC Commands</h1>
+        <button type="button" id="MaxDefrostBtn" class="btn btn-danger">Max Defrost</button>
+        </br>
+        </br>
+        <button type="button" id="StartHVACBtn" class="btn btn-danger">Start HVAC System</button>
+        </br>
+        </br>
+        <button type="button" id="StopHVACBtn" class="btn btn-danger">Stop HVAC System</button>
+        </br>
+        </br>
+
+        <!--
+        <form>
+            <div class="form-row align-items-center">
+                <div class="col-auto">
+                    <button type="button" id="SetTemperature" class="btn btn-danger">Set Temperature</button>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="TemperatureField">Name</label>
+                    <input type="text" class="form-control mb-2" id="TemperatureField" placeholder="Temperature">
+                </div>
+            </div>
+        </form>
+    	-->
+    </div>
 {/body}

@@ -31,6 +31,26 @@ app.get('/defrost', (req, res) => {
     }))
 });
 
+app.get('/climate_on', (req, res) => {
+    Auth.sendCommand(({
+        callback: (data) => {
+            res.send(data)
+        },
+        endpoint: "CLIMATE_ON",
+        args: {}
+    }))
+});
+
+app.get('/climate_off', (req, res) => {
+    Auth.sendCommand(({
+        callback: (data) => {
+            res.send(data)
+        },
+        endpoint: "CLIMATE_OFF",
+        args: {}
+    }))
+});
+
 app.get('/honk', (req, res) => {
     Auth.sendCommand(({
         callback: (data) => {

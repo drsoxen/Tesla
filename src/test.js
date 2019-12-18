@@ -1,9 +1,13 @@
 var Auth = require('./Authentication.js');
-var Commands = require('./Commands.js');
-var State = require('./State.js');
 
-Auth.sendCommand(() => {
-    State.getData((data) => {
+Auth.getState(({
+    callback: (data) => {
         console.log(data.state);
-    })
-})
+    },
+    endpoint: "VEHICLE_DATA"
+}))
+
+
+
+
+

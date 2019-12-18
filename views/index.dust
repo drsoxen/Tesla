@@ -3,11 +3,12 @@
 {<body}
 <div>
   <h1>Status</h1>
-  <p><a href="/battery">Battery</a></p>
-  <p><a href="/climate">Climate</a></p>
+  <button type="button" href="/battery" class="btn btn-outline-primary">Battery Status</button> </br> </br>
+  <button type="button" href="/climate" class="btn btn-outline-primary">Climate Status</button> </br> </br>
 </div>
 <div>
   <h1>Commands</h1>
-  <p><a href="/defrost">Max Defrost</a></p>
+  <button type="button" href="/honk" class="btn btn-outline-success">Honk Horn</button> </br> </br>
+  <button type="button" href="/defrost" class="btn btn-outline-danger">Max Defrost</button> </br> </br>
 </div>
 {/body}

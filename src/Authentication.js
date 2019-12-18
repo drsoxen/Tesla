@@ -17,14 +17,34 @@ const axios = axioslib.create({
     }
 });
 
-module.exports.sendCommand = (callback) => {
+module.exports.sendCommand = (params) => {
     login(() => {
         getVehicles(() => {
             wake(() => {
                 checkOnline(() => {
-                    callback()
+                    axios.post(Endpoints[params.endpoint].URI, params.args)
+                        .then((response) => {
+                            params.callback(response.data.response.result)
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 })
             })
+        })
+    })
+}
+
+module.exports.getState = (params) => {
+    login(() => {
+        getVehicles(() => {
+            axios.get(Endpoints[params.endpoint].URI)
+                .then((response) => {
+                    params.callback(response.data.response)
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         })
     })
 }
@@ -79,7 +99,7 @@ let checkOnline = (callback) => {
                 checkingStateInterval = null;
                 callback();
             } else {
-                if(!checkingStateInterval){
+                if (!checkingStateInterval) {
                     checkingStateInterval = setInterval(() => {
                         checkOnline(callback)
                     }, 2000);

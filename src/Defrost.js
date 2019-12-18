@@ -1,9 +1,11 @@
 var Auth = require('./Authentication.js');
-var Commands = require('./Commands.js');
-var State = require('./State.js');
 
-Auth.sendCommand(() => {
-    Commands.defrost((res) => {
+Auth.sendCommand(({
+    callback: (data) => {
         //console.log('max-defrost activated: ' + res)
-    })
-})
+    },
+    endpoint: "MAX_DEFROST",
+    args: {
+        "on": true
+    }
+}))

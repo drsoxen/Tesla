@@ -1,6 +1,4 @@
 var Auth = require('./Authentication.js');
-var Commands = require('./Commands.js');
-var State = require('./State.js');
 
 var express = require('express'),
     path = require('path'),
@@ -11,41 +9,54 @@ var express = require('express'),
 
 app.engine('dust', cons.dust);
 
-
 app.set('view engine', 'dust');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/../views');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-//Commands
 app.get('/defrost', (req, res) => {
-    Auth.sendCommand(() => {
-        Commands.defrost((res) => {
-            res.end(res);
-        })
-    })  
+    Auth.sendCommand(({
+        callback: (data) => {
+            res.send('<b>max-defrost activated: ' + data + '</b>')
+        },
+        endpoint: "MAX_DEFROST",
+        args: {
+            "on": true
+        }
+    }))
 });
 
-//Status
+app.get('/honk', (req, res) => {
+    Auth.sendCommand(({
+        callback: (data) => {
+            res.send('Beep Beep')
+        },
+        endpoint: "HONK_HORN",
+        args: {}
+    }))
+});
+
 app.get('/climate', (req, res) => {
-    Auth.sendCommand(() => {
-        State.getData((data) => {
+    Auth.getState(({
+        callback: (data) => {
             res.json(data.climate_state);
-        })
-    })
+        },
+        endpoint: "VEHICLE_DATA"
+    }))
 });
 
 app.get('/battery', (req, res) => {
-    Auth.sendCommand(() => {
-        State.getBattery((data) => {
+    Auth.getState(({
+        callback: (data) => {
             res.json(data);
-        })
-    })
+        },
+        endpoint: "CHARGE_STATE"
+    }))
 });
 
 app.get('/', (req, res) => {

@@ -1,4 +1,4 @@
-var Auth = require('./Authentication.js');
+var Auth = require('./authentication.js');
 
 Auth.getState(({
     callback: (data) => {

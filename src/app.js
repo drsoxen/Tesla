@@ -1,4 +1,4 @@
-var Auth = require('./Authentication.js');
+var Auth = require('./authentication.js');
 
 var express = require('express'),
     path = require('path'),

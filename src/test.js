@@ -6,8 +6,3 @@ Auth.getState(({
     },
     endpoint: "VEHICLE_DATA"
 }))
-
-
-
-
-

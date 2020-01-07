@@ -3,7 +3,7 @@ var fs = require('fs');
 
 let Endpoints;
 
-var env = JSON.parse(fs.readFileSync('../env.json', 'utf8'));
+var env = JSON.parse(fs.readFileSync('./env.json', 'utf8'));
 
 let loggedIn = false;
 
@@ -75,7 +75,7 @@ let login = (callback) => {
 let getVehicles = (callback) => {
     axios.get('/api/1/vehicles/')
         .then((response) => {
-            fs.readFile("../public/endpoints.json", "utf8", (err, data) => {
+            fs.readFile("./public/endpoints.json", "utf8", (err, data) => {
                 Endpoints = JSON.parse(data.replace(/{vehicle_id}/g, response.data.response[0].id_s))
                 module.exports.Endpoints = Endpoints;
                 callback();
